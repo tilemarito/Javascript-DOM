@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 2 - 4, SECTION 4 - 6 & SECTION 7</title>
+    <style>
+        .biru {
+            color: blue;
+        }
+
+        .hijau {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>SECTION 2 - 4, SECTION 4 - 6 & SECTION 7 - 8</h1>
+    <!--Section 4 - 6-->
+    <h2>Menu Daftar Buah - Buahan</h2>
+    <p id="paragraf">Ini adalah daftar buah - buahan</p>
+    <button id="ubah-warna">Ubah Warna</button>
+    <br>
+    <br>
+
+    <h2>Kontak Kami</h2>
+    <form>
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama">
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <br>
+        <label for="pesan">Pesan:</label>
+        <textarea id="pesan" name="pesan"></textarea>
+        <br>
+        <br>
+        <button type="submit">Kirim</button>
+    </form>
+    
+    <br>
+
+
+    <!--Section 2 - 4 -->
+    <table border="1">
+        <tbody>
+            <tr>
+                <th>Nama Buah</th>
+            </tr>
+            <tr>
+                <td>
+                    <ul id="buah-list">
+                        <li class="buah">Apel</li>
+                        <li class="buah">Jeruk Bali</li>
+                        <li class="buah">Mangga</li>
+                        <li class="buah">Manggis</li>
+                    </ul>
+                </td>
+        </tbody>
+    </table>
+    <br>
+
+    
+
+    <script>
+
+        //SECTION 2-4
+        //Selecting elements
+        const buahList = document.querySelector('#buah-list');
+        const buahItems = document.querySelectorAll('.buah');
+        const paragraf = document.getElementById('paragraf');
+        const form = document.querySelector('form');
+        const namaInput = document.getElementById('nama');
+        const emailInput = document.getElementById('email');
+        const pesanInput = document.getElementById('pesan');
+        
+
+        // Traversing Elements
+        console.log(buahList.firstChild); 
+        console.log(buahList.firstElementChild); 
+        console.log(buahList.lastChild); 
+        console.log(buahList.lastElementChild); 
+        console.log(buahItems[1].nextSibling); 
+        console.log(buahItems[1].nextElementSibling); 
+        console.log(buahItems[3].previousSibling); 
+        console.log(buahItems[3].previousElementSibling); 
+
+        // Manipulating Elements
+        const tambahBuahBtn = document.createElement('button');
+        tambahBuahBtn.textContent = 'Tambah Buah';
+        document.body.appendChild(tambahBuahBtn);
+
+        tambahBuahBtn.addEventListener('click', function() {
+            const inputBuah = prompt('Masukkan nama buah baru:');
+            const liBaru = document.createElement('li');
+            liBaru.textContent = inputBuah;
+            buahList.appendChild(liBaru);
+        });
+
+        buahItems[1].textContent = 'Pepaya';
+        buahItems[1].style.color = 'red';
+
+        //sECTION 4-6
+        // Working with Attributes
+        paragraf.setAttribute('title', 'Paragraf ini memiliki judul');
+        console.log(paragraf.getAttribute('title'));
+
+        // Manipulating Element's Styles
+        const ubahWarnaBtn = document.getElementById('ubah-warna');
+
+        ubahWarnaBtn.addEventListener('click', function() {
+            if (paragraf.classList.contains('biru')) {
+                paragraf.classList.remove('biru');
+                paragraf.classList.add('hijau');
+            } else {
+                paragraf.classList.remove('hijau');
+                paragraf.classList.add('biru');
+            }
+        });
+
+        //SECTION 7 - 8
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Mencegah form untuk melakukan submit
+
+            // Scripting Web Forms
+            const namaValue = namaInput.value.trim();
+            const emailValue = emailInput.value.trim();
+            const pesanValue = pesanInput.value.trim();
+
+            if (namaValue === '') {
+                alert('Nama tidak boleh kosong');
+                namaInput.focus();
+                return;
+            }
+
+            if (emailValue === '') {
+                alert('Email tidak boleh kosong');
+                emailInput.focus();
+                return;
+            }
+
+            if (pesanValue === '') {
+                alert('Pesan tidak boleh kosong');
+                pesanInput.focus();
+                return;
+            }
+
+            alert('Terima kasih ${namaValue}, pesan kamu telah terkirim!');
+            form.reset();
+        });
+
+        // Working with Events
+        namaInput.addEventListener('focus', function() {
+            namaInput.classList.add('focus');
+        });
+
+        namaInput.addEventListener('blur', function() {
+            namaInput.classList.remove('focus');
+        });
+
+    </script>
+</body>
+</html>
